@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pets.hall.mapper.ArtistMapper">
+  <select id="findOne" resultType="com.pets.hall.model.Artist">
+    SELECT id, name, english_name, born, born_place, roles, tagline, bio
+    FROM artist
+    LIMIT 1
+  </select>
+</mapper>

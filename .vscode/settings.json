@@ -1,0 +1,21 @@
+{
+  "jdk.jdkhome": "D:\\Users\\Lenovo\\.jdks\\ms-17.0.17",
+  "jdk.project.jdkhome": "D:\\Users\\Lenovo\\.jdks\\ms-17.0.17",
+  "java.jdt.ls.java.home": "D:\\Users\\Lenovo\\.jdks\\ms-17.0.17",
+  "java.configuration.runtimes": [
+    {
+      "name": "JavaSE-17",
+      "path": "D:\\Users\\Lenovo\\.jdks\\ms-17.0.17",
+      "default": true
+    }
+  ],
+  "java.configuration.updateBuildConfiguration": "automatic",
+  "java.compile.nullAnalysis.mode": "disabled",
+  "java.import.exclusions": [
+    "**/tools/**",
+    "**/target/**"
+  ],
+  "html.customData": [
+    ".vscode/thymeleaf.html-data.json"
+  ]
+}

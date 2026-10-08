@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>曾沛慈 · 礼物厅</title>
+    <meta name="description" content="曾沛慈的粉丝档案：听歌、查舞台、看专辑、留言。不是官方站点。" />
+    <meta name="theme-color" content="#c4232c" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta property="og:title" content="曾沛慈 · 礼物厅" />
+    <meta property="og:description" content="曾沛慈的粉丝档案：听歌、查舞台、看专辑、留言。不是官方站点。" />
+    <meta property="og:type" content="website" />
+    <script>
+      try {
+        var song = new URLSearchParams(location.search).get("song");
+        if (sessionStorage.getItem("pets-entered") === "1" || location.hash === "#guestbook" || song) {
+          document.documentElement.classList.add("entered");
+        }
+      } catch (e) {}
+    </script>
+    <style>
+      html.entered .gate { display: none; }
+    </style>
+    <script type="module" crossorigin src="/assets/index-DTyQtqUt.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-BvCjs0dB.css">
+  </head>
+  <body>
+    <div id="app"></div>
+  </body>
+</html>

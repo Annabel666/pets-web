@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pets.hall.mapper.VoiceMapper">
+  <select id="findAll" resultType="com.pets.hall.model.Voice">
+    SELECT id, title, release_year AS year, note, bvid, list_name, autoplay
+    FROM voice
+    ORDER BY sort_no
+  </select>
+</mapper>

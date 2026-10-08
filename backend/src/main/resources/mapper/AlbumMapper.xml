@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pets.hall.mapper.AlbumMapper">
+  <select id="findAll" resultType="com.pets.hall.model.Album">
+    SELECT id, release_year AS year, title, label
+    FROM album
+    ORDER BY sort_no
+  </select>
+  <select id="findHits" resultType="com.pets.hall.model.AlbumHit">
+    SELECT album_id, title
+    FROM album_hit
+    ORDER BY album_id, sort_no
+  </select>
+</mapper>

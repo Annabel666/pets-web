@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pets.hall.mapper.QuoteMapper">
+  <select id="findAll" resultType="com.pets.hall.model.Quote">
+    SELECT id, content AS text, origin AS source, quote_year AS year
+    FROM quote_item
+    ORDER BY sort_no
+  </select>
+  <select id="findTags" resultType="com.pets.hall.model.QuoteTag">
+    SELECT quote_id, tag
+    FROM quote_tag
+    ORDER BY quote_id, sort_no
+  </select>
+</mapper>

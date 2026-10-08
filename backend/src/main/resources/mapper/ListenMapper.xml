@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pets.hall.mapper.ListenMapper">
+  <select id="findRecent" resultType="string">
+    SELECT voice_id
+    FROM hall_listen
+    WHERE user_id = #{userId}
+    ORDER BY played_at DESC, voice_id ASC
+    LIMIT 6
+  </select>
+
+  <insert id="touch">
+    INSERT INTO hall_listen (user_id, voice_id, played_at)
+    VALUES (#{userId}, #{voiceId}, CURRENT_TIMESTAMP(3))
+    ON DUPLICATE KEY UPDATE played_at = CURRENT_TIMESTAMP(3)
+  </insert>
+
+  <delete id="trim">
+    DELETE FROM hall_listen
+    WHERE user_id = #{userId}
+      AND voice_id NOT IN (
+        SELECT voice_id FROM (
+          SELECT voice_id
+          FROM hall_listen
+          WHERE user_id = #{userId}
+          ORDER BY played_at DESC, voice_id ASC
+          LIMIT 6
+        ) recent
+      )
+  </delete>
+</mapper>

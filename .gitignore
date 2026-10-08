@@ -1,0 +1,6 @@
+target/
+tools/
+.idea/
+*.iml
+frontend/node_modules/
+backups/

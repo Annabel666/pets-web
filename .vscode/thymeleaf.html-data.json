@@ -1,0 +1,25 @@
+{
+  "version": 1.1,
+  "tags": [
+    {
+      "name": "th:block",
+      "description": "Thymeleaf block",
+      "attributes": [
+        { "name": "th:if" },
+        { "name": "th:text" },
+        { "name": "th:each" }
+      ]
+    }
+  ],
+  "globalAttributes": [
+    { "name": "xmlns:th" },
+    { "name": "th:if" },
+    { "name": "th:text" },
+    { "name": "th:href" },
+    { "name": "th:action" },
+    { "name": "th:value" },
+    { "name": "th:each" },
+    { "name": "th:src" },
+    { "name": "th:inline" }
+  ]
+}
