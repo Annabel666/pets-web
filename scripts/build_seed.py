@@ -3,7 +3,7 @@ import pathlib
 import re
 
 archive = pathlib.Path(__file__).resolve().parent / "archive-data.js"
-out = pathlib.Path(r"C:\Users\Lenovo\pets-web\backend\src\main\resources\data.sql")
+out = pathlib.Path(__file__).resolve().parent.parent / "backend" / "src" / "main" / "resources" / "data.sql"
 
 src = archive.read_text(encoding="utf-8")
 text = src.replace("window.PETS_ARCHIVE =", "", 1).strip()
