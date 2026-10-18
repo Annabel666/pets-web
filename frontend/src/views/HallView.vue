@@ -1,5 +1,5 @@
 <script setup>
-import { computed, onMounted, ref, watch } from "vue";
+import { computed, onMounted, onUnmounted, ref, watch } from "vue";
 import { agreeMessage, deleteMessage, loadArchive, loadListens, loadMessages, loadMine, loadSession, logout, postMessage, rememberListen, updateMessage } from "../api";
 
 const archive = ref(null);
@@ -32,6 +32,7 @@ const showPlaceholder = ref(true);
 const statusMode = ref("");
 const wantPlay = ref(false);
 let loadTimer = 0;
+let notesTimer = 0;
 
 const artist = computed(() => archive.value?.artist || {});
 const voices = computed(() => archive.value?.voices || []);
@@ -175,6 +176,11 @@ onMounted(async () => {
   } catch (e) {
     loadError.value = "礼物厅暂时没有打开，稍后再来。";
   }
+  notesTimer = window.setInterval(syncNotes, 5000);
+});
+
+onUnmounted(() => {
+  window.clearInterval(notesTimer);
 });
 
 watch(current, (voice) => {
@@ -349,8 +355,30 @@ async function copySong() {
   }, 1600);
 }
 
+function applyFreshNotes(data) {
+  const notes = Array.isArray(data?.notes) ? data.notes : [];
+  const loadedMore = messages.value.length > notes.length;
+  if (!loadedMore) {
+    messages.value = notes;
+    notesMore.value = Boolean(data?.more);
+    return;
+  }
+  const fresh = new Map(notes.map((note) => [note.id, note]));
+  const known = new Set(messages.value.map((note) => note.id));
+  const newer = notes.filter((note) => !known.has(note.id));
+  messages.value = newer.concat(messages.value.map((note) => fresh.get(note.id) || note));
+}
+
 async function refreshNotes() {
-  takeNotes(messageScope.value === "mine" ? await loadMine() : await loadMessages(), false);
+  const data = messageScope.value === "mine" ? await loadMine() : await loadMessages();
+  applyFreshNotes(data);
+}
+
+async function syncNotes() {
+  if (sending.value || document.hidden) return;
+  try {
+    await refreshNotes();
+  } catch (e) {}
 }
 
 async function loadOlder() {
